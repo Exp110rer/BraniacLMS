@@ -15,6 +15,12 @@ class NewsPageView(TemplateView):
         context['range'] = range(5)
         return context
 
+class NewsPagePaginatedView(NewsPageView):
+    def get_context_data(self, page, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['page_num'] = page
+        return context
+
 
 class CoursesPageView(TemplateView):
     template_name = "mainapp/courses_list.html"
