@@ -1,15 +1,17 @@
 from django.contrib import admin
 from django.urls import path
 from mainapp.apps import MainappConfig
-from mainapp.views import MainPageView, NewsPageView, CoursesPageView, ContactsPageView, DocSitePageView, LoginPageView
+from mainapp.views import MainPageView, NewsPageView, CoursesPageView, ContactsPageView, DocSitePageView, LoginPageView, \
+    NewsPagePaginatedView
 
 app_name = MainappConfig.name
 
 urlpatterns = [
-    path('', MainPageView.as_view(), name="ndex"),
-    path("news/", NewsPageView.as_view()),
-    path("courses/", CoursesPageView.as_view()),
-    path("contacts/", ContactsPageView.as_view()),
-    path("doc_site/", DocSitePageView.as_view()),
-    path("login/", LoginPageView.as_view()),
+    path('', MainPageView.as_view(), name="index"),
+    path("news/", NewsPageView.as_view(), name="news"),
+    path("news/<int:page>", NewsPagePaginatedView.as_view(), name="news_paginated"),
+    path("courses/", CoursesPageView.as_view(), name="courses"),
+    path("contacts/", ContactsPageView.as_view(), name="contacts"),
+    path("doc_site/", DocSitePageView.as_view(), name="doc_site"),
+    path("login/", LoginPageView.as_view(), name="login"),
 ]
