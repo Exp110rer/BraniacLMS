@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load static %}
 
 {% block title %}
 {{ course_object.name }}
@@ -112,7 +113,7 @@
     <p class="card-text">
     <form action="{% url 'mainapp:course_feedback' %}" method="POST" id="feedbackForm">
       {% csrf_token %}
-      {{ feedback_form|crispy }}
+      {{ feedback_form.as_p}}
     </form>
     <button id="feedbackSubmit" class="btn btn-primary btn-block">Отправить</button>
     </p>
